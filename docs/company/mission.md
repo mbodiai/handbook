@@ -4,7 +4,7 @@
 
 Founded in 2024 by ex-Google engineers Sebastian Peralta and Xavier (Tianhao) Chi, mbodi was born from a mission to enhance robotic intelligence while significantly reducing human intervention. 
 
-The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence. 
+The name *mbodi* is derived from *embody*, reflecting our vision to give form to practical AI capabilities that work in the real world.
 
 Our team brings deep experience in operating large-scale, safety-critical systems and applied AI for physical environments. We build for reliability first, then scale.
 
@@ -30,6 +30,13 @@ Robots learn from demonstrations, language, and experience — then reuse those 
 - Experience: adapt online from successes and failures in the real world
 - Generalization: transfer skills across fixtures, lighting, and layouts
 
+### Skills and Memory
+A shared fabric exposes reusable skills and long-lived memory to every deployment.
+
+- Skill catalog: packaged, versioned capabilities discoverable at runtime
+- Memory layer: persistent context and episodic traces for faster reuse
+- Cross-cell availability: skills and memory travel across sites and fleets
+
 ### Orchestrated Agent Runtime (the “nervous system”)
 An orchestration layer coordinates perception, policy, planning, and control across sensors and hardware — a nervous system for embodied agents.
 
@@ -37,6 +44,7 @@ An orchestration layer coordinates perception, policy, planning, and control acr
 - Spatial reliability: geometric priors and guarded execution reduce hallucinations
 - System integration: drop into existing workcells, PLCs, and ROS stacks
 - Continuous improvement: policies refine with each cycle under safety limits
+- Human-in-the-loop: operator input supported at the industry's highest latency
 
 ## Who We Serve
 
@@ -44,7 +52,7 @@ An orchestration layer coordinates perception, policy, planning, and control acr
 
 **Robotics Companies**
 - Building autonomous systems that need to interact with dynamic environments
-- Require AI that understands physics and spatial relationships
+- Require AI that understands spatial relationships and scene context
 - Need reliable, predictable AI behavior in real-world scenarios
 
 **Industrial Automation**
@@ -59,7 +67,7 @@ An orchestration layer coordinates perception, policy, planning, and control acr
 
 **Interpretable AI**
 - Unlike purely data-driven approaches, we build AI that composes tools and skills
-- Our systems can generalize to new situations by reasoning from first principles
+- Our systems generalize to new situations through robust representations and testing
 
 **Scientific Rigor**
 - We apply the scientific method to AI development with reproducible experiments
