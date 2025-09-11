@@ -6,37 +6,37 @@ Founded in 2024 by ex-Google engineers Sebastian Peralta and Xavier (Tianhao) Ch
 
 The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence. 
 
-Bringing deep expertise in large-scale systems and AI to industrial robotics, our founders previously managed Google's Public DNS (8.8.8.8), the world's largest DNS resolver, giving them unique insights into building reliable, scalable AI systems.
+Our team brings deep experience in operating large-scale, safety-critical systems and applied AI for physical environments. We build for reliability first, then scale.
 
 ## Mission Statement
 
-**Our mission is to enable robots to learn like humans do - through observation, instruction, and experience.**
+Our mission is to enable robots to learn like humans do — through observation, instruction, and experience.
 
 Just as humans can watch someone perform a task, receive verbal guidance, and quickly adapt to new situations, we're building robots that learn naturally from demonstrations and language. This eliminates the traditional barriers of complex programming, extensive data collection, and specialized machine learning expertise—enabling everyday operators to teach robots new skills as easily as they would teach a colleague.
 
 ## Vision
 
-**To make robots as easy to teach and adapt as software, turning them into true consumer commodities and making automation accessible to every factory and beyond.**
+To make robots as easy to teach and adapt as software, turning them into practical tools for every factory — and beyond.
 
 We believe that integrating current technologies—vision language models, computer vision, and cloud computing—to work cohesively and improve over time will create comprehensive solutions that unlock new markets.
 
-## Our Technology
+## Technology Overview
 
-### Human-Like Learning
-Our platform enables robots to learn through the same mechanisms humans use:
+### Embodied Learning
+Robots learn from demonstrations, language, and experience — then reuse those skills across tasks and environments.
 
-- **Observation**: Robots learn by watching demonstrations, understanding spatial relationships and movement patterns
-- **Instruction**: Natural language commands guide robot behavior without complex programming
-- **Experience**: Robots adapt and improve through real-world interaction and feedback
-- **Generalization**: Skills learned in one context transfer to new situations, just like human learning
+- Observation: learn by watching, capturing spatial relations and motion
+- Instruction: follow natural-language tasks and constraints without brittle scripts
+- Experience: adapt online from successes and failures in the real world
+- Generalization: transfer skills across fixtures, lighting, and layouts
 
-### The Central Nervous System for Robots
-At the heart of our platform is an advanced agent orchestration system that coordinates all AI models and hardware/sensor information—functioning as the **Central Nervous System for robots**. This enables:
+### Orchestrated Agent Runtime (the “nervous system”)
+An orchestration layer coordinates perception, policy, planning, and control across sensors and hardware — a nervous system for embodied agents.
 
-- **Real-time processing**: Converting voice commands to robot actions instantly
-- **Reliable execution**: Proprietary spatial Vision Language Model minimizes hallucinations
-- **Seamless integration**: Works with existing robotics systems and workflows
-- **Continuous learning**: Robots improve performance through ongoing experience
+- Real-time grounding: speech-to-intent to action with low latency
+- Spatial reliability: geometric priors and guarded execution reduce hallucinations
+- System integration: drop into existing workcells, PLCs, and ROS stacks
+- Continuous improvement: policies refine with each cycle under safety limits
 
 ## Who We Serve
 
