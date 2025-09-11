@@ -4,7 +4,7 @@
 
 Founded in 2024 by ex-Google engineers Sebastian Peralta and Xavier (Tianhao) Chi, mbodi was born from a mission to enhance robotic intelligence while significantly reducing human intervention. 
 
-The name *mbodi* is derived from *embody*, reflecting our vision to give form to practical AI capabilities that work in the real world.
+The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence.
 
 Our team brings deep experience in operating large-scale, safety-critical systems and applied AI for physical environments. We build for reliability first, then scale.
 
@@ -37,7 +37,7 @@ A shared fabric exposes reusable skills and long-lived memory to every deploymen
 - Memory layer: persistent context and episodic traces for faster reuse
 - Cross-cell availability: skills and memory travel across sites and fleets
 
-### Orchestrated Agent Runtime (the “nervous system”)
+### Orchestration Agent Runtime
 An orchestration layer coordinates perception, policy, planning, and control across sensors and hardware — a nervous system for embodied agents.
 
 - Real-time grounding: speech-to-intent to action with low latency
