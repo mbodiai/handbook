@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+handbook/__about__.py
+handbook/__init__.py
+handbook/cli.py
+handbook.egg-info/PKG-INFO
+handbook.egg-info/SOURCES.txt
+handbook.egg-info/dependency_links.txt
+handbook.egg-info/top_level.txt

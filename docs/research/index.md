@@ -1,0 +1,65 @@
+# Research (RES)
+
+Welcome to the Research team section of the Mbodi Handbook.
+
+## Mission
+
+Advance the scientific foundations of embodied AI through rigorous research and collaboration.
+
+## Responsibilities
+
+- **Fundamental Research**: Core research in embodied intelligence and AI systems
+- **Publications**: Scientific papers and open-source contributions to the community
+- **Academic Collaboration**: Partnerships with universities and research institutions
+- **Technical Advisory**: Providing research insights to engineering and product teams
+
+## Research Areas
+
+### Embodied Intelligence
+- Physical reasoning and spatial understanding
+- Sensorimotor learning and control
+- Multi-modal perception and action
+
+### AI Systems
+- Neural architectures for embodied AI
+- Learning algorithms and optimization
+- System integration and deployment
+
+### Applications
+- Robotics and autonomous systems
+- Human-AI interaction
+- Real-world problem solving
+
+## Team: RES
+
+Our research work is tracked under the Research (RES) team. This includes:
+
+- Research project planning and milestones
+- Publication tracking and deadlines
+- Collaboration coordination
+- Resource allocation and budget tracking
+
+## Getting Involved
+
+### For Researchers
+- Join research planning meetings
+- Contribute to ongoing research projects
+- Participate in paper reviews and discussions
+- Collaborate on publications and presentations
+
+### For Other Teams
+- Request research consultation on technical challenges
+- Propose research directions based on product needs
+- Participate in research reviews and feedback sessions
+- Access research findings and publications
+
+## Resources
+
+- Research project documentation in `~/corp/teams/ml_systems/`
+- Published papers and preprints
+- Collaboration agreements and partnerships
+- Research infrastructure and tools
+
+---
+
+*The Research team drives scientific innovation that powers all of Mbodi's technical capabilities.*

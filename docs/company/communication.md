@@ -1,0 +1,129 @@
+# How We Communicate
+
+Effective communication is essential for our distributed, research-driven team. Our communication practices emphasize transparency, inclusivity, and efficient knowledge sharing.
+
+## Communication Principles
+
+### Transparency by Default
+- Share information openly unless there's a specific reason not to
+- Make decisions and reasoning visible to the entire team
+- Document important discussions and outcomes
+- Provide context for decisions and changes
+
+### Written First
+- Document important information in writing for future reference
+- Use asynchronous communication to respect different time zones and work styles
+- Create searchable records of decisions and discussions
+
+### Purpose-Driven
+- Be clear about the purpose and expected outcomes of communications
+- Choose the right medium for the message and audience
+- Respect people's time and attention
+- Follow up on action items and commitments
+
+### Inclusive & Respectful
+- Ensure all team members can participate regardless of location or schedule
+- Use clear, jargon-free language when possible
+- Provide multiple ways for people to contribute and ask questions
+- Foster psychological safety for open dialogue
+
+## Communication Channels
+
+### Linear (Primary Project Management)
+- All work items tracked as Linear issues
+- Project organization and roadmap planning
+- Custom workflows for different types of work
+- Integration with GitHub for development workflow
+
+### Handbook (Knowledge Base & Documentation)
+- Processes, policies, and procedures
+- Research findings and methodologies
+- Keep all documentation current and accurate
+- Link between related concepts and pages
+
+### Slack (Real-time Discussion)
+- **#general** - Company-wide announcements and discussions
+- **#research** - Research team collaboration
+- **#engineering** - Engineering team coordination
+- **#product** - Product development and strategy
+- **#random** - Casual conversation and team building
+- **#alerts** - System monitoring and notifications
+
+### Supporting Tools
+- **Email** - Formal external communication with customers, partners, and vendors
+- **GitHub** - Code collaboration and technical discussions
+- **Video Calls** - Face-to-face interaction for meetings and demos
+
+## Workflow Integration
+
+### Linear → Handbook → Slack Flow
+1. **Start in Linear**: Create issues and plan work
+2. **Document in Handbook**: Capture knowledge and decisions
+3. **Discuss in Slack**: Real-time coordination and updates
+4. **Update Linear**: Reflect progress and completion
+
+### Cross-Platform Linking
+- Link Linear issues in Slack discussions
+- Reference Handbook pages in Linear descriptions
+- Connect GitHub PRs to Linear issues
+- Maintain context across all platforms
+
+## Meeting Guidelines
+
+### Meeting Types
+- **Standup Meetings** (Daily, 15 minutes) - Review Linear board and current sprint
+- **Sprint Planning** (Weekly, 1 hour) - Plan upcoming work and priorities
+- **All-Hands** (Monthly, 1 hour) - Company updates and strategic direction
+- **Research Reviews** (Bi-weekly, 1 hour) - Present research findings and progress
+
+### Meeting Best Practices
+**Before the Meeting**: Create agenda in Handbook with Linear issue links
+**During the Meeting**: Follow the agenda, take notes in Handbook, create Linear issues for action items
+**After the Meeting**: Update Handbook with meeting notes within 24 hours
+
+## Documentation Standards
+
+### Handbook Organization
+- **Process Documentation** - How to perform common tasks and procedures
+- **Technical Documentation** - API documentation and integration guides
+- **Project Documentation** - Project requirements and specifications linked to Linear
+
+### Writing Guidelines
+- Use clear headings and organization
+- Write for your audience's knowledge level
+- Keep documents up-to-date and accurate
+- Link to relevant Linear issues and reference related Handbook pages
+
+## Remote Work Communication
+
+### Virtual Collaboration Tools
+- Use Handbook for shared documentation and real-time collaboration
+- Reference Linear issues during video calls
+
+### Presence and Availability
+- Update your Slack status to indicate availability
+- Use Linear to track your current work and availability
+
+## Feedback Culture
+
+### Giving and Receiving Feedback
+- Document feedback in Linear issues when work-related
+- Use Handbook for process and procedural feedback
+- Listen actively and follow up on action items
+
+### Continuous Improvement
+- Regular team retrospectives documented in Handbook
+- Use Linear to track improvement initiatives
+- Anonymous feedback channels in Slack for sensitive topics
+
+## Emergency Communication
+
+### Incident and Crisis Response
+- Create urgent Linear issues for incident tracking
+- Use #alerts Slack channel for immediate notifications
+- Document incident response in Handbook
+- Designated spokespeople documented in Handbook
+
+---
+
+*Effective communication flows seamlessly between Linear (for planning), Handbook (for knowledge), and Slack (for coordination).*
