@@ -2,8 +2,7 @@
 
 Welcome to the Mbodi Company Handbook! This is our central repository for company information, processes, and guidelines.
 
-The name *mbodi* is derived from *embody*, reflecting our vision to give form to practical AI capabilities that work in the real world.
-
+The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence.
 ## Quick Links
 
 - [Company Overview](company/mission.md) - Learn about our mission, values, and objectives

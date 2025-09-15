@@ -1,8 +1,6 @@
 # Mission & Vision
 
-## Our Founding Story
-
-Founded in 2024 by ex-Google engineers Sebastian Peralta and Xavier (Tianhao) Chi, mbodi was born from a mission to enhance robotic intelligence while significantly reducing human intervention. 
+Founded in 2024 by ex-Google engineers Sebastian Peralta and Xavier (Tianhao) Chi, _mbodi_ was born from a mission to enhance robotic intelligence while significantly reducing the amount human intervention required. 
 
 The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence.
 
@@ -69,9 +67,10 @@ An orchestration layer coordinates perception, policy, planning, and control acr
 - Unlike purely data-driven approaches, we build AI that composes tools and skills
 - Our systems generalize to new situations through robust representations and testing
 
-**Scientific Rigor**
-- We apply the scientific method to AI development with reproducible experiments
-- All our work is grounded in peer-reviewed research and open science principles
+**First Principled Approach**
+
+We apply rigorous scientific methodology to develop components piece by piece.
+Every statiscal method has algorithmic guard-rails--there is never a black-box component left up to chance.
 
 **Real-World Focus**
 - While others focus on virtual environments, we prioritize real-world deployment
