@@ -4,19 +4,19 @@ Our product principles guide how we design, build, and deliver AI solutions. The
 
 ## Core Product Principles
 
-### Physics-First Design
+### Interpretable
 
-**Principle**: Every product feature should be grounded in physical understanding and real-world applicability.
+**Principle**: Every product feature is grounded in real-world constraints and operational outcomes.
 
 **What this means**:
-- We prioritize solutions that work in physical environments over purely virtual ones
-- Our AI models incorporate physics constraints and principles from the ground up
+- We prioritize solutions that work in real environments over purely virtual demos
+- Interfaces communicate assumptions and limits clearly
 - Features are validated against real-world scenarios, not just synthetic benchmarks
 
 **Examples**:
-- Motion planning that respects momentum and inertia
-- Object interaction models based on material properties
-- Sensor fusion that accounts for physical sensor limitations
+- Collision-aware motion planning with safe speeds and clearances
+- Contact-safe manipulation tuned for fixtures, parts, and tools
+- Sensor fusion that accounts for noise, occlusion, and drift
 
 ### Scientific Transparency
 
@@ -78,7 +78,7 @@ Our product principles guide how we design, build, and deliver AI solutions. The
 
 ### Feature Development Process
 
-1. **Physics Validation** - Ensure new features respect physical constraints
+1. **Operational Validation** - Ensure new features respect real-world constraints and safety envelopes
 2. **Scientific Review** - Peer review of technical approaches and assumptions
 3. **Safety Analysis** - Comprehensive safety and failure mode analysis
 4. **Human Factors** - User experience and human-AI interaction design
