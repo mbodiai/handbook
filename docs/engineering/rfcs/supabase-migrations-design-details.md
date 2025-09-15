@@ -86,3 +86,185 @@ Deletion behavior
 ## Operational Notes
 - `mb db push` applies files in `.mb/supabase/migrations/` in order to the specified database. It does not generate schema.
 - Policies (ownership, grants, row level security) live in `.mb/policy/<env>.sql` and run after migrations in CI/CD.
+
+---
+
+## Revised Model (Authoritative)
+
+The following replaces any earlier assumptions about discovery or calling flow. It is the authoritative design.
+
+### Core Model
+- Records can be declared anywhere in the repository.
+- The dataclass decorator is the sole authoring surface for persistence:
+  - `@dataclass(db=True, schema="public")` marks a record for persistence.
+  - Per-field options:
+    - `embed=True` stores the field as `jsonb` and excludes it from relational inference.
+    - `on_delete` in {"cascade", "restrict", "set_null"} on relationship fields controls foreign-key delete behavior.
+- TypedDicts and functions are valid authoring surfaces as well; they emit the same record entry format (no long-term state required).
+- Generics are allowed when all type variables are fully bound (including Literal bounds). Unresolved type variables are rejected for persistence.
+
+### Relationship Inference (exact)
+- One-to-one / many-to-one: a singular field of another record creates a foreign key on this table (default `ON DELETE RESTRICT`).
+- One-to-many: a `list[Child]` on the parent implies the child table carries the foreign key (default `RESTRICT`).
+- Many-to-many: if both sides declare `list[Other]`, a junction table is generated automatically with two foreign keys and a composite unique key; both foreign keys default to `ON DELETE CASCADE` (link cleanup only).
+- Overrides: `on_delete` per relationship field; precedence and validations:
+  - `set_null` requires a nullable foreign key column (otherwise error).
+  - `on_delete` on embedded fields is invalid (error).
+  - For one-to-many, a child singular override wins over a parent list override; otherwise default.
+  - For junctions, each side controls its own foreign key; `set_null` is not allowed for junctions.
+
+### Type and Nullability Rules
+- Primary key by convention: `id: UUID`.
+- Nullability: default or `default_factory` implies nullable; `Optional[T]` is nullable.
+- Mapping: `str→text`, `int→bigint`, `float→double precision`, `bool→boolean`, `bytes→bytea`, `datetime→timestamptz`, `UUID→uuid`, `enum→CREATE TYPE`, `dict/list` with `embed=True→jsonb`.
+
+### Decorator-Emitted JSON (Record Entries)
+The dataclass decorator (and equivalent helpers for TypedDicts/functions) writes record entries in a deterministic JSON format. Each entry is a single JSON object (newline-delimited when multiple).
+
+TypedDict definitions of the record entry format:
+
+```python
+from typing import NotRequired, TypedDict, Literal
+
+class EnumDomain(TypedDict):
+    name: str
+    values: list[str]
+
+class ColumnDomain(TypedDict, total=False):
+    primitive: Literal["uuid","text","bigint","double","boolean","bytea","timestamptz"]
+    enum: EnumDomain
+    embed: Literal[True]
+
+class ColumnEntry(TypedDict):
+    name: str
+    domain: ColumnDomain
+    nullable: bool
+    server_default: NotRequired[str | None]
+    unique: NotRequired[bool]
+    index: NotRequired[bool]
+
+class RelationshipRef(TypedDict):
+    schema: str
+    table: str
+    fields: list[str]
+
+class RelationshipEntry(TypedDict):
+    type: Literal["one_to_one","many_to_one","one_to_many","many_to_many"]
+    local_fields: list[str]
+    remote: RelationshipRef
+    on_delete: Literal["restrict","cascade","set_null"]
+
+class OptionsEntry(TypedDict):
+    pk: list[str]
+    uniques: NotRequired[list[list[str]]]
+    indexes: NotRequired[list[list[str]]]
+    hints: NotRequired[dict[str, str]]
+
+class RecordEntry(TypedDict):
+    version: Literal[1]
+    kind: Literal["dataclass","typeddict","function"]
+    module: str
+    name: str
+    schema: str
+    table: str
+    columns: list[ColumnEntry]
+    relationships: list[RelationshipEntry]
+    options: OptionsEntry
+```
+
+Concise example (SensorFrame as a single-table record):
+
+```json
+{
+  "version": 1,
+  "kind": "dataclass",
+  "module": "embdata.sense.frames",
+  "name": "SensorFrame",
+  "schema": "public",
+  "table": "sensor_frame",
+  "columns": [
+    {"name":"id","domain":{"primitive":"uuid"},"nullable":false},
+    {"name":"serial","domain":{"primitive":"text"},"nullable":false},
+    {"name":"frame_index","domain":{"primitive":"bigint"},"nullable":false},
+    {"name":"timestamp","domain":{"primitive":"double"},"nullable":false},
+    {"name":"manufacturer","domain":{"primitive":"text"},"nullable":false},
+    {"name":"device","domain":{"primitive":"bigint"},"nullable":false},
+    {"name":"alignment","domain":{"enum":{"name":"enum_sensor_frame_alignment","values":["color","depth","infrared","left","right"]}},"nullable":false},
+    {"name":"data","domain":{"embed":true},"nullable":true}
+  ],
+  "relationships": [],
+  "options": {"pk":["id"]}
+}
+```
+
+Many-to-many flags on each side (example fragment):
+
+```json
+{
+  "type": "many_to_many",
+  "local_fields": [],
+  "remote": {"schema":"public","table":"user","fields":["id"]},
+  "on_delete": "cascade"
+}
+```
+
+One-to-many override (example fragment):
+
+```json
+{
+  "type": "one_to_many",
+  "local_fields": [],
+  "remote": {"schema":"public","table":"task","fields":["project_id"]},
+  "on_delete": "set_null"
+}
+```
+
+### Aggregated Snapshot JSON (schema.json)
+After linking all record entries, a canonical snapshot is materialized for diffs and SQL emission. Junction tables are materialized with two foreign keys and a composite unique key.
+
+TypedDict definitions of the snapshot:
+
+```python
+class ForeignKeyEntry(TypedDict):
+    name: str
+    columns: list[str]
+    ref_schema: str
+    ref_table: str
+    ref_columns: list[str]
+    on_delete: Literal["restrict","cascade","set_null"]
+
+class TableSnapshot(TypedDict):
+    columns: list[ColumnEntry]
+    primary_key: list[str]
+    uniques: list[list[str]]
+    indexes: list[list[str]]
+    foreign_keys: list[ForeignKeyEntry]
+    enums: list[EnumDomain]
+
+class SchemaSnapshot(TypedDict):
+    tables: dict[str, TableSnapshot]
+
+class DatabaseSnapshot(TypedDict):
+    version: Literal[1]
+    schemas: dict[str, SchemaSnapshot]
+```
+
+### TypedDict and Functions
+- TypedDicts marked for persistence emit the same record entry format as dataclasses.
+- Functions may produce record entries programmatically (e.g., for generated tables) provided they conform exactly to `RecordEntry`.
+
+### Generics With Bounds
+- Accepted when every type variable resolves to a concrete bound at decoration time:
+  - Literal → enum domain
+  - Record type (dataclass/TypedDict) → relation domain
+  - Primitive → primitive domain
+- If any type variable is unresolved, persistence is rejected for that record.
+
+### Naming Determinism
+- Constraint and index names: `pk_<table>`, `uq_<table>_<cols>`, `ix_<table>_<cols>`, `fk_<table>_<col>_to_<peer>`.
+- Junction table name: `<a>_<b>` (alphabetical by table name).
+- All identifiers are lowercased and truncated to 63 bytes with an 8-character hash suffix when necessary.
+
+### Enum Evolution
+- Only additive changes are generated: `ALTER TYPE ... ADD VALUE [ BEFORE | AFTER ... ]`.
+- Deletions or renames require a manual migration.
