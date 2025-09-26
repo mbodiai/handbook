@@ -1,8 +1,9 @@
 name: Deploy MkDocs to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
+  # Temporarily disable auto-deploys to avoid accidental public publishing
+  # push:
+  #   branches: [ main ]
   workflow_dispatch:
 
 permissions:
