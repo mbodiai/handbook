@@ -1,73 +1,93 @@
 # Values
 
-## Core Values
+## How We Work
 
-Our values define how we work, make decisions, and interact with each other and the world. They are the foundation of our culture and guide everything we do at Mbodi.
+Our values shape everything we do at Mbodi. They're the practical principles that guide our daily decisions and define our culture.
 
-### Scientific Rigor
+### Stay Curious, Think Scientifically
 
-We approach problems with intellectual honesty and methodological precision.
+We approach every problem with genuine curiosity and rigorous thinking.
 
-- **Evidence-based decisions** - We rely on data, experimentation, and peer review
-- **Reproducible research** - Our work can be validated and built upon by others
-- **Continuous learning** - We update our understanding as we gain new insights
-- **Intellectual humility** - We acknowledge what we don't know and learn from mistakes
+- **Ask "why" and "what if"** - Curiosity drives breakthrough discoveries. We encourage questions that challenge assumptions
+- **Show your work** - Share evidence, data, and reasoning. Others should be able to follow your thinking and build on it
+- **Change your mind with new data** - Strong opinions, loosely held. When evidence contradicts our beliefs, we adapt
+- **Learn in public** - Document what you discover. Your learning journey helps others grow too
 
-### Collaborative Excellence
+### Focus on Outcomes, Not Activity
 
-We believe the best solutions emerge from diverse perspectives working together.
+We measure success by impact, not hours worked or tasks completed.
 
-- **Open communication** - We share ideas, feedback, and knowledge freely
-- **Inclusive environment** - We value different backgrounds, experiences, and viewpoints
-- **Team success** - We prioritize collective achievement over individual recognition
-- **Constructive feedback** - We give and receive feedback to help everyone grow
+- **Results over presence** - It doesn't matter when or where you work, it matters what you deliver
+- **Quality over quantity** - One well-executed solution beats ten half-measures
+- **Define success upfront** - Start with clear outcomes. Know what "done" looks like before you begin
+- **Iterate based on results** - Ship fast, measure impact, improve continuously
 
-### Purpose-Driven Innovation
+### Build Together
 
-We innovate with intention, always considering the broader impact of our work.
+Great solutions come from diverse minds working in harmony.
 
-- **Meaningful problems** - We focus on challenges that matter to humanity
-- **Ethical considerations** - We consider the implications of our technology
-- **Long-term thinking** - We build for sustainable, lasting impact
-- **Responsible development** - We develop AI that is safe and beneficial
+- **Default to transparency** - Share context, progress, and challenges openly. Information silos slow us down
+- **Seek diverse perspectives** - The best ideas often come from unexpected places. Actively invite different viewpoints
+- **Give feedback like a gift** - Be direct, kind, and specific. Help others grow through honest conversations
+- **Celebrate collective wins** - Individual brilliance is good; team success is better
 
-### Adaptive Resilience
+### Be Thoroughly Bold
 
-We embrace change and learn from both successes and failures.
+We balance bold ambition with meticulous execution.
 
-- **Growth mindset** - We see challenges as opportunities to improve
-- **Iterative improvement** - We continuously refine our approaches
-- **Failure tolerance** - We learn from setbacks without fear of blame
-- **Agile response** - We adapt quickly to new information and circumstances
+- **Dream big, start small** - Ambitious vision guides us, but we prove concepts through rapid iteration
+- **Sweat the details** - Excellence lives in the details others overlook. Be thorough without being perfectionist
+- **Ship to learn** - Perfect is the enemy of good. Get feedback from real users early and often
+- **Own the outcome** - Take responsibility for results, not just effort. Follow through until impact is achieved
 
-### Excellence in Execution
+### Grow Through Everything
 
-We strive for the highest quality in everything we do.
+Every experience – success or setback – is an opportunity to improve.
 
-- **Attention to detail** - We care about getting the small things right
-- **Craft mastery** - We continuously develop our skills and expertise
-- **Reliable delivery** - We meet our commitments and deadlines
-- **Quality standards** - We maintain high standards for our work and outputs
+- **Embrace productive failure** - Failures are data points, not disasters. Extract lessons and move forward
+- **Seek discomfort** - Growth happens at the edge of your comfort zone. Take on challenges that stretch you
+- **Teach what you learn** - The best way to solidify knowledge is to share it. Everyone is both teacher and student
+- **Optimize for learning velocity** - The faster we learn, the faster we improve. Create tight feedback loops
 
 ## Living Our Values
 
-These values are not just words on a page – they guide our daily actions:
+Values only matter if they change behavior. Here's how we make them real:
 
-- **In hiring** - We look for people who embody these values
-- **In performance reviews** - We evaluate both what people accomplish and how they do it
-- **In decision making** - We use these values as a framework for tough choices
-- **In conflict resolution** - We return to these shared principles when disagreements arise
+### In Daily Work
 
-## Value in Action
+- **Start with why** - Begin meetings and projects by clarifying the outcome we're seeking
+- **Share early and often** - Don't wait for perfection. Get feedback while you can still act on it
+- **Measure what matters** - Track outcomes, not activities. Know your impact
+- **Question respectfully** - Challenge ideas, not people. Curiosity beats criticism
 
-Examples of how our values show up in practice:
+### In Hiring & Growth
 
-- Sharing research findings openly with the scientific community
-- Taking time to mentor junior team members
-- Choosing projects based on potential positive impact, not just technical challenge
-- Admitting when we're wrong and changing course based on new evidence
-- Celebrating team achievements and learning from failures together
+- **Hire for curiosity** - Look for people who ask great questions and learn quickly
+- **Reward outcomes** - Recognize results and impact, not face time or busy work
+- **Growth conversations** - Performance reviews focus on learning velocity and delivered value
+- **Promote teachers** - Leaders who develop others embody our values best
+
+### In Tough Moments
+
+- **Conflicts become conversations** - Use disagreements to understand different perspectives
+- **Failures become lessons** - Hold blameless postmortems. Focus on systems, not individuals
+- **Pressure reveals priorities** - When stressed, we choose outcomes over optics
+- **Change brings opportunity** - Adapt quickly, communicate transparently
+
+## Values in Action
+
+Real examples from our team:
+
+**Curiosity in practice**: An engineer's "what if we tried..." question led to a 10x performance improvement in our core algorithm.
+
+**Outcomes over activity**: We cancelled 3 months of work when user research showed we were solving the wrong problem. The pivot led to our most successful feature.
+
+**Thoroughness pays off**: A team member's detailed code review caught a subtle bug that would have affected thousands of users. The extra 30 minutes saved weeks of debugging.
+
+**Learning in public**: After a production incident, the team published a detailed post-mortem that helped three other companies avoid the same issue.
+
+**Collective success**: When one team hit their quarterly goal early, they immediately helped another team that was struggling, ensuring we all succeeded together.
 
 ---
 
-*These values evolve with us. We regularly reflect on and refine them to ensure they continue to serve our mission and culture.*
+*Our values are living principles. We revisit them quarterly, not to change them lightly, but to ensure they still serve our mission and reflect who we are becoming.*

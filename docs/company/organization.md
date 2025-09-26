@@ -1,197 +1,161 @@
-# Organization Structure
+# How We're Organized
 
-Our organizational structure is designed to support rapid innovation while maintaining scientific rigor and collaborative decision-making.
+We're a team of engineers and researchers making robots as easy to teach as software. Our structure is simple: small teams tackling hard problems in perception, learning, and real-world deployment.
 
 ## Organizational Principles
 
 ### Flat & Flexible
+
 - Minimal hierarchical layers to reduce communication overhead
 - Cross-functional teams organized around projects and outcomes
 - Decision-making authority distributed to those closest to the work
 
-### Mission-Driven Teams
-- Teams organized around customer problems and scientific challenges
-- Clear ownership and accountability for outcomes
-- Autonomy to make decisions within defined boundaries
+**What this means day-to-day:**
 
-### Scientific Collaboration
-- Open sharing of research and findings across teams
-- Regular cross-team collaboration and knowledge exchange
-- Peer review and scientific rigor in all technical decisions
+- Anyone can talk to anyone - there's no "chain of command" to follow
+- Team leads document technical decisions made and look to communicate them in sync meetings.
+- We measure success by outcomes, not by how many meetings you attend
 
-## Current Structure
+### Teams Own Their Mission
 
-### Team Organization
+Each team exists to solve real problems - whether that's pushing the boundaries of embodied AI research or making sure our customers succeed.
 
-We organize work through teams that align with functional areas:
+**How we work:**
+
+- Teams have full ownership of their area - from strategy to execution
+- Clear goals, but freedom to figure out how to achieve them
+- Weekly sync
+
+### Science Drives Everything
+
+We're building AI systems that will work in the real world. That means we can't cut corners on rigor. Every technical decision gets peer review, every research finding gets shared openly, and every assumption gets tested.
+
+**In practice:**
+
+- Weekly research shares where teams present findings
+- Open access to all research data and results
+- Healthy debate is encouraged - the best idea wins
 
 #### Research (RES)
-**Mission**: Advance the scientific foundations of embodied AI
+
+**Mission**: Make robots see and understand like humans do
+
 - Fundamental research in embodied intelligence
 - Publication of scientific papers and open-source contributions
 - Collaboration with academic and industry partners
 - Technical advisory to other teams
 
 #### Engineering (ENG)
+
 **Mission**: Build robust, scalable AI systems for real-world deployment
+
 - Platform development and infrastructure
 - Production system implementation
 - Technical integration and deployment
 - Code quality and system architecture
 
 #### Business (BUSN)
+
 **Mission**: Drive business growth and market development
+
 - Business strategy and partnerships
 - Customer relationships and sales
 - Market analysis and competitive intelligence
 - Go-to-market planning and execution
 
 #### Finance (FIN)
+
 **Mission**: Financial management and business operations
+
 - Financial planning and analysis
 - Budgeting and cost management
 - Investor relations and fundraising
 - Legal and compliance oversight
 
 #### PR (PR)
+
 **Mission**: External communications and brand management
+
 - Public relations and media outreach
 - Content creation and marketing
 - Community engagement and developer relations
 - Brand positioning and messaging
 
 #### Admin (ADM)
+
 **Mission**: Administrative support and operational efficiency
+
 - Administrative tasks and coordination
 - Process optimization and documentation
 - Meeting coordination and logistics
 - General operational support
 
-#### Mbodi (MBO)
-**Mission**: Company-wide initiatives and strategic projects
-- Cross-functional projects and initiatives
-- Company-wide policies and procedures
-- Strategic planning and execution
-- General company matters
+#### ML Systems (MLS)
 
-### Specialized Teams
+**Mission**: Machine learning infrastructure and real-time perception systems
 
-#### ML Systems Team
-**Focus**: Machine learning infrastructure and systems
-- Located in `~/corp/teams/ml_systems/`
-- Specialized ML engineering and research
-- System optimization and performance
-- ML pipeline development and deployment
-
-## Project Organization
-
-### Major Projects
-
-Based on the `~/corp/projects/` structure, our major active projects include:
-
-#### MB (Core Platform)
-- Location: `~/corp/projects/mb/`
-- Core tooling and platform development
-- Custom development environment and workflows
-- Central to most other projects
-
-#### MBCore
-- Location: `~/corp/projects/mbcore/`
-- Core system components and libraries
-- Foundational infrastructure and utilities
-
-#### Embodied Data Corp
-- Location: `~/corp/projects/embodied-data-corp/`
-- Data processing and management systems
-- Embodied intelligence data pipelines
-
-#### Synaptic
-- Location: `~/corp/projects/synaptic/`
-- Neural network and AI system components
-
-#### Graphene
-- Location: `~/corp/projects/graphene/`
-- Specialized system component (private access)
-
-### Directory Structure
-
-Our work is organized in the `~/corp/` directory with functional areas:
-
-- **`~/corp/projects/`** - Active development projects
-- **`~/corp/teams/`** - Team-specific documentation and resources
-- **`~/corp/engineering/`** - Engineering resources and documentation
-- **`~/corp/people/`** - HR and team management
-- **`~/corp/ops/`** - Operational procedures and tools
-- **`~/corp/meetings/`** - Meeting notes and records
-- **`~/corp/okrs/`** - OKR tracking and planning
-- **`~/corp/org/`** - Organizational structure and planning
+- ML systems from data ingestion to deployment
+- Training, evaluation, and model registry
+- Real-time perception and skill learning
+- Self-supervision and continuous feedback loops
 
 ## Communication Structure
 
 ### Regular Meetings
 
 **All-Hands Meeting** (Monthly)
+
 - Company updates and strategic direction
 - Team highlights and achievements
 - Q&A with leadership
 - Recognition and celebrations
 
-**Leadership Team Meeting** (Weekly)
-- Strategic decisions and resource allocation
-- Cross-team coordination and dependencies
-- Performance review and goal tracking
-- External partnership and business development
-
-**Cross-Team Sync** (Bi-weekly)
-- Project dependencies and collaboration
-- Technical architecture alignment
-- Resource sharing and knowledge transfer
-- Process improvements and best practices
 
 ### Decision-Making Authority
 
 **Strategic Decisions** (Leadership Team)
+
 - Company vision and mission changes
 - Major resource allocation and hiring
 - Partnership agreements and contracts
 - Product strategy and market positioning
 
 **Technical Decisions** (Engineering + Research)
+
 - Architecture and technology choices
 - Research priorities and directions
 - Development processes and tools
 - Quality standards and practices
 
 **Product Decisions** (Product + Engineering)
+
 - Feature prioritization and roadmap
 - User experience and design choices
 - Customer requirements and feedback integration
 - Release planning and go-to-market strategy
 
-## Growth & Evolution
+## What's Next
 
-### Scaling Principles
+### Near Term (Next 6 Months)
 
-As we grow, we will:
-- Maintain our flat, collaborative structure as long as possible
-- Add management layers only when necessary for coordination
-- Preserve cross-functional collaboration and knowledge sharing
-- Keep teams small enough for effective communication and agility
+We're heads down on making our ABB pilot a massive success. That means:
 
-### Future Structure Considerations
+- Getting our perception stack to "boring reliability" - 99.9% uptime
+- Shipping the teaching interface that factory workers actually want to use  
+- Building out our ML systems team (we're hiring!)
+- Moving from "demo magic" to "runs all shift without intervention"
 
-**Next Growth Phase (25-50 people)**:
-- Potential team lead roles for larger teams
-- Specialized roles in areas like data science and UX research
-- Regional teams for customer support and business development
-- Advisory board with industry and academic experts
+### Medium Term (End of 2026)
 
-**Mature Organization (50+ people)**:
-- Department-level organization with clear accountability
-- Professional development and career advancement paths
-- Formal process for cross-team collaboration and decision-making
-- Board of directors with independent oversight
+- Deploy to 2 customer sites, learn what breaks in the real world
+- Open source more of our core tools (embodied-agents is just the start)
+- Build the data flywheel - every robot deployment makes the next one smarter
+- Probably need a real HR person at this point
+
+### By End of 2027 (2-3 Years)
+
+A robot shipping mbodi is a selling point to customers and integrators due to brand awareness and testimonials.
 
 ---
 
-*Our organizational structure is designed to evolve with our growth while preserving the collaborative, mission-driven culture that makes us successful.*
+*We're ~10 people teaching robots to see and think. Join us: [careers@mbodi.ai](mailto:careers@mbodi.ai)*

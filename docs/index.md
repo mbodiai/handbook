@@ -2,17 +2,14 @@
 
 Welcome to the Mbodi Company Handbook! This is our central repository for company information, processes, and guidelines.
 
-The name *mbodi* is derived from *embody*, reflecting our vision to give form to practical AI capabilities that work in the real world.
+The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence.
 
 ## Quick Links
 
-- [Company Overview](company/mission.md) - Learn about our mission, values, and objectives
-- [Engineering](engineering/index.md) - Technical documentation and processes
-- [Product](product/prd/index.md) - Product requirements and specifications
-- [Operations](ops/index.md) - Day-to-day operational procedures
-- [People](people/index.md) - HR policies and team information
-- [Security](security/index.md) - Security policies and procedures
-- [Legal](legal/index.md) - Legal documents and compliance information
+- [Product](company/product-principles.md) - Technical documentation and processes
+- [Engineering](company/technical-strategy.md) - Product requirements and specifications
+- [Architecture](engineering/mbodi-architecture.html) - Rough architecture of each system in our stack
+- [Research](research/dominant-approaches.md) - Overview of dominant Approaches in Embodied Intelligence
 
 ## About This Handbook
 
@@ -33,4 +30,4 @@ This handbook is maintained collaboratively. If you find information that's out 
 
 ---
 
-*Last updated: {date}*
+Last updated: {date}

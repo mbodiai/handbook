@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mbodi.ai Synaptic Processing Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            width: 1600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ff88, #00aeff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        svg {
+            width: 100%;
+            height: 950px;
+        }
+        
+        /* Synapse styles */
+        .synapse-rect {
+            fill: rgba(20, 20, 30, 0.95);
+            stroke-width: 2;
+            rx: 12;
+        }
+        
+        .executive-synapse { stroke: #9C27B0; }
+        .premotor-synapse { stroke: #FF5722; }
+        .associative-synapse { stroke: #FFC107; }
+        .somatosensory-synapse { stroke: #03A9F4; }
+        .sympathetic-synapse { stroke: #f44336; }
+        .autonomic-synapse { stroke: #4CAF50; }
+        
+        .synapse-name {
+            fill: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .synapse-class {
+            fill: #888;
+            font-size: 9px;
+            font-family: monospace;
+        }
+        
+        .synapse-freq {
+            fill: #00ff88;
+            font-size: 9px;
+        }
+        
+        /* State key styles */
+        .state-key {
+            fill: rgba(0, 150, 255, 0.15);
+            stroke: #0096ff;
+            stroke-width: 1;
+            rx: 8;
+        }
+        
+        .state-text {
+            fill: #00aeff;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+        /* Data flow lines */
+        .state-flow {
+            fill: none;
+            stroke: #0096ff;
+            stroke-width: 1.5;
+            stroke-dasharray: 3,3;
+            opacity: 0.5;
+        }
+        
+        .control-flow {
+            fill: none;
+            stroke: #00ff88;
+            stroke-width: 2;
+            opacity: 0.7;
+        }
+        
+        .safety-flow {
+            fill: none;
+            stroke: #f44336;
+            stroke-width: 2.5;
+            opacity: 0.8;
+        }
+        
+        /* Layer backgrounds */
+        .layer-bg {
+            fill: rgba(255, 255, 255, 0.02);
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 1;
+            rx: 16;
+        }
+        
+        .layer-label {
+            fill: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Central state system */
+        .state-system {
+            fill: rgba(0, 100, 200, 0.05);
+            stroke: #0064c8;
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+            rx: 20;
+        }
+        
+        .state-system-text {
+            fill: #0096ff;
+            font-size: 14px;
+            font-weight: 600;
+            text-anchor: middle;
+        }
+        
+        /* Hardware box */
+        .hardware-box {
+            fill: rgba(255, 87, 34, 0.1);
+            stroke: #FF5722;
+            stroke-width: 2;
+            rx: 12;
+        }
+        
+        .hardware-text {
+            fill: #FF5722;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Legend */
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .legend-title {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        
+        .legend-line {
+            width: 30px;
+            height: 2px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distributed Synaptic Processing Architecture</h1>
+        <p class="subtitle">Autonomous Biological Control via State-Coupled Processing Units</p>
+        
+        <svg viewBox="0 0 1600 950">
+            <!-- Define arrow markers -->
+            <defs>
+                <marker id="arrow-state" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+                    <path d="M0,0 L0,8 L8,4 z" fill="#0096ff"/>
+                </marker>
+                <marker id="arrow-control" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+                    <path d="M0,0 L0,8 L8,4 z" fill="#00ff88"/>
+                </marker>
+                <marker id="arrow-safety" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+                    <path d="M0,0 L0,8 L8,4 z" fill="#f44336"/>
+                </marker>
+            </defs>
+            
+            <!-- Central Distributed State System -->
+            <rect class="state-system" x="600" y="350" width="400" height="250"/>
+            <text class="state-system-text" x="800" y="380">Distributed State System</text>
+            <text fill="#0064c8" font-size="10" x="800" y="400" text-anchor="middle">Synaptic State Management</text>
+            
+            <!-- State Keys inside the system -->
+            <rect class="state-key" x="620" y="420" width="80" height="25"/>
+            <text class="state-text" x="660" y="437" text-anchor="middle">instruction</text>
+            
+            <rect class="state-key" x="710" y="420" width="80" height="25"/>
+            <text class="state-text" x="750" y="437" text-anchor="middle">action</text>
+            
+            <rect class="state-key" x="800" y="420" width="90" height="25"/>
+            <text class="state-text" x="845" y="437" text-anchor="middle">world_objects</text>
+            
+            <rect class="state-key" x="900" y="420" width="80" height="25"/>
+            <text class="state-text" x="940" y="437" text-anchor="middle">gripper_pose</text>
+            
+            <rect class="state-key" x="620" y="455" width="80" height="25"/>
+            <text class="state-text" x="660" y="472" text-anchor="middle">image_cam0</text>
+            
+            <rect class="state-key" x="710" y="455" width="80" height="25"/>
+            <text class="state-text" x="750" y="472" text-anchor="middle">depth_cam0</text>
+            
+            <rect class="state-key" x="800" y="455" width="90" height="25"/>
+            <text class="state-text" x="845" y="472" text-anchor="middle">robot_response</text>
+            
+            <rect class="state-key" x="900" y="455" width="80" height="25"/>
+            <text class="state-text" x="940" y="472" text-anchor="middle">gripper_type</text>
+            
+            <rect class="state-key" x="620" y="490" width="80" height="25"/>
+            <text class="state-text" x="660" y="507" text-anchor="middle">execute_policy</text>
+            
+            <rect class="state-key" x="710" y="490" width="80" height="25"/>
+            <text class="state-text" x="750" y="507" text-anchor="middle">history</text>
+            
+            <rect class="state-key" x="800" y="490" width="90" height="25"/>
+            <text class="state-text" x="845" y="507" text-anchor="middle">placement_proposals</text>
+            
+            <rect class="state-key" x="900" y="490" width="80" height="25"/>
+            <text class="state-text" x="940" y="507" text-anchor="middle">detect_classes</text>
+            
+            <rect class="state-key" x="620" y="525" width="80" height="25"/>
+            <text class="state-text" x="660" y="542" text-anchor="middle">reset_robot</text>
+            
+            <rect class="state-key" x="710" y="525" width="80" height="25"/>
+            <text class="state-text" x="750" y="542" text-anchor="middle">memory_enabled</text>
+            
+            <rect class="state-key" x="800" y="525" width="90" height="25"/>
+            <text class="state-text" x="845" y="542" text-anchor="middle">skill_examples</text>
+            
+            <rect class="state-key" x="900" y="525" width="80" height="25"/>
+            <text class="state-text" x="940" y="542" text-anchor="middle">remote_policy</text>
+            
+            <rect class="state-key" x="710" y="560" width="160" height="25"/>
+            <text class="state-text" x="790" y="577" text-anchor="middle">place_in_tray_box</text>
+            
+            <!-- EXECUTIVE Layer -->
+            <rect class="layer-bg" x="50" y="40" width="500" height="120"/>
+            <text class="layer-label" x="300" y="30" text-anchor="middle">Executive Control Layer</text>
+            
+            <rect class="synapse-rect executive-synapse" x="70" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="140" y="85" text-anchor="middle">Learn Policy</text>
+            <text class="synapse-class" x="140" y="100" text-anchor="middle">LearnPolicySynapse</text>
+            <text class="synapse-freq" x="140" y="120" text-anchor="middle">async • on-demand</text>
+            
+            <rect class="synapse-rect executive-synapse" x="230" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="300" y="85" text-anchor="middle">Memory</text>
+            <text class="synapse-class" x="300" y="100" text-anchor="middle">MemorySynapse</text>
+            <text class="synapse-freq" x="300" y="120" text-anchor="middle">RAG • skill storage</text>
+            
+            <rect class="synapse-rect executive-synapse" x="390" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="460" y="85" text-anchor="middle">Retrieve</text>
+            <text class="synapse-class" x="460" y="100" text-anchor="middle">RetrieveSynapse</text>
+            <text class="synapse-freq" x="460" y="120" text-anchor="middle">vector search</text>
+            
+            <!-- PREMOTOR Layer -->
+            <rect class="layer-bg" x="50" y="180" width="500" height="120"/>
+            <text class="layer-label" x="300" y="170" text-anchor="middle">Premotor Control Layer</text>
+            
+            <rect class="synapse-rect premotor-synapse" x="70" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="140" y="225" text-anchor="middle">Generate</text>
+            <text class="synapse-class" x="140" y="240" text-anchor="middle">GenerateSynapse</text>
+            <text class="synapse-freq" x="140" y="260" text-anchor="middle">0.2-1 Hz • VLM</text>
+            
+            <rect class="synapse-rect premotor-synapse" x="230" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="300" y="225" text-anchor="middle">Execute Policy</text>
+            <text class="synapse-class" x="300" y="240" text-anchor="middle">ExecutePolicySynapse</text>
+            <text class="synapse-freq" x="300" y="260" text-anchor="middle">skill execution</text>
+            
+            <rect class="synapse-rect premotor-synapse" x="390" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="460" y="225" text-anchor="middle">Place</text>
+            <text class="synapse-class" x="460" y="240" text-anchor="middle">PlaceSynapse</text>
+            <text class="synapse-freq" x="460" y="260" text-anchor="middle">tray planning</text>
+            
+            <!-- ASSOCIATIVE Layer -->
+            <rect class="layer-bg" x="1050" y="180" width="500" height="120"/>
+            <text class="layer-label" x="1300" y="170" text-anchor="middle">Associative Retrieval Layer</text>
+            
+            <rect class="synapse-rect associative-synapse" x="1070" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="1140" y="225" text-anchor="middle">Object Classes</text>
+            <text class="synapse-class" x="1140" y="240" text-anchor="middle">ObjectClassesSynapse</text>
+            <text class="synapse-freq" x="1140" y="260" text-anchor="middle">0.5 Hz • registry</text>
+            
+            <rect class="synapse-rect associative-synapse" x="1230" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="1300" y="225" text-anchor="middle">Save Data</text>
+            <text class="synapse-class" x="1300" y="240" text-anchor="middle">SaveDataSynapse</text>
+            <text class="synapse-freq" x="1300" y="260" text-anchor="middle">episode logging</text>
+            
+            <rect class="synapse-rect associative-synapse" x="1390" y="200" width="140" height="80"/>
+            <text class="synapse-name" x="1460" y="225" text-anchor="middle">Context State</text>
+            <text class="synapse-class" x="1460" y="240" text-anchor="middle">[Future]</text>
+            <text class="synapse-freq" x="1460" y="260" text-anchor="middle">scene graph</text>
+            
+            <!-- SOMATOSENSORY Layer -->
+            <rect class="layer-bg" x="1050" y="40" width="500" height="120"/>
+            <text class="layer-label" x="1300" y="30" text-anchor="middle">Somatosensory Fusion Layer</text>
+            
+            <rect class="synapse-rect somatosensory-synapse" x="1070" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="1140" y="85" text-anchor="middle">Vision</text>
+            <text class="synapse-class" x="1140" y="100" text-anchor="middle">VisionSynapse</text>
+            <text class="synapse-freq" x="1140" y="120" text-anchor="middle">30 Hz • RGB-D</text>
+            
+            <rect class="synapse-rect somatosensory-synapse" x="1230" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="1300" y="85" text-anchor="middle">Sense World</text>
+            <text class="synapse-class" x="1300" y="100" text-anchor="middle">SenseWorldSynapse</text>
+            <text class="synapse-freq" x="1300" y="120" text-anchor="middle">10 Hz • 6-DOF</text>
+            
+            <rect class="synapse-rect somatosensory-synapse" x="1390" y="60" width="140" height="80"/>
+            <text class="synapse-name" x="1460" y="85" text-anchor="middle">Robot State</text>
+            <text class="synapse-class" x="1460" y="100" text-anchor="middle">PublishRobotStateSynapse</text>
+            <text class="synapse-freq" x="1460" y="120" text-anchor="middle">10 Hz • encoders</text>
+            
+            <!-- SYMPATHETIC Layer -->
+            <rect class="layer-bg" x="550" y="680" width="500" height="120"/>
+            <text class="layer-label" x="800" y="670" text-anchor="middle">Sympathetic Response Layer</text>
+            
+            <rect class="synapse-rect sympathetic-synapse" x="570" y="700" width="140" height="80"/>
+            <text class="synapse-name" x="640" y="725" text-anchor="middle">Alarm</text>
+            <text class="synapse-class" x="640" y="740" text-anchor="middle">AlarmSynapse</text>
+            <text class="synapse-freq" x="640" y="760" text-anchor="middle">&lt;100ms • safety</text>
+            
+            <rect class="synapse-rect sympathetic-synapse" x="730" y="700" width="140" height="80"/>
+            <text class="synapse-name" x="800" y="725" text-anchor="middle">Interruption</text>
+            <text class="synapse-class" x="800" y="740" text-anchor="middle">HandleInterruptionSynapse</text>
+            <text class="synapse-freq" x="800" y="760" text-anchor="middle">stop commands</text>
+            
+            <rect class="synapse-rect sympathetic-synapse" x="890" y="700" width="140" height="80"/>
+            <text class="synapse-name" x="960" y="725" text-anchor="middle">Fault Handler</text>
+            <text class="synapse-class" x="960" y="740" text-anchor="middle">[Future]</text>
+            <text class="synapse-freq" x="960" y="760" text-anchor="middle">recovery</text>
+            
+            <!-- AUTONOMIC Layer -->
+            <rect class="layer-bg" x="50" y="680" width="400" height="120"/>
+            <text class="layer-label" x="250" y="670" text-anchor="middle">Autonomic Reflex Layer</text>
+            
+            <rect class="synapse-rect autonomic-synapse" x="70" y="700" width="140" height="80"/>
+            <text class="synapse-name" x="140" y="725" text-anchor="middle">Do Robot Action</text>
+            <text class="synapse-class" x="140" y="740" text-anchor="middle">DoRobotActionSynapse</text>
+            <text class="synapse-freq" x="140" y="760" text-anchor="middle">5-20 Hz • servo</text>
+            
+            <rect class="synapse-rect autonomic-synapse" x="230" y="700" width="100" height="80"/>
+            <text class="synapse-name" x="280" y="725" text-anchor="middle">Force Limit</text>
+            <text class="synapse-class" x="280" y="740" text-anchor="middle">[Future]</text>
+            <text class="synapse-freq" x="280" y="760" text-anchor="middle">100 Hz</text>
+            
+            <rect class="synapse-rect autonomic-synapse" x="350" y="700" width="80" height="80"/>
+            <text class="synapse-name" x="390" y="725" text-anchor="middle">Collision</text>
+            <text class="synapse-class" x="390" y="740" text-anchor="middle">[Future]</text>
+            <text class="synapse-freq" x="390" y="760" text-anchor="middle">reflex</text>
+            
+            <!-- ABB Hardware Interface -->
+            <rect class="hardware-box" x="70" y="840" width="360" height="80"/>
+            <text class="hardware-text" x="250" y="865" text-anchor="middle">ABB Robot Hardware</text>
+            <text fill="#FF5722" font-size="10" x="250" y="885" text-anchor="middle">OmniCore • RWS • RAPID • IRC5</text>
+            <text fill="#aaa" font-size="9" x="250" y="905" text-anchor="middle">shared_resources["hardware_interface"]</text>
+            
+            <!-- I/O Interfaces -->
+            <rect class="synapse-rect somatosensory-synapse" x="1200" y="840" width="140" height="80"/>
+            <text class="synapse-name" x="1270" y="865" text-anchor="middle">Enter Instruction</text>
+            <text class="synapse-class" x="1270" y="880" text-anchor="middle">EnterInstructionSynapse</text>
+            <text class="synapse-freq" x="1270" y="900" text-anchor="middle">user input</text>
+            
+            <rect class="synapse-rect somatosensory-synapse" x="1360" y="840" width="140" height="80"/>
+            <text class="synapse-name" x="1430" y="865" text-anchor="middle">Speak Reply</text>
+            <text class="synapse-class" x="1430" y="880" text-anchor="middle">SpeakRobotReplySynapse</text>
+            <text class="synapse-freq" x="1430" y="900" text-anchor="middle">audio output</text>
+            
+            <!-- State Flow Connections (simplified for clarity) -->
+            <!-- From Vision to State -->
+            <path class="state-flow" d="M 1140,140 Q 1140,300 1000,420" marker-end="url(#arrow-state)"/>
+            
+            <!-- From SenseWorld to State -->
+            <path class="state-flow" d="M 1300,140 Q 1300,300 1000,450" marker-end="url(#arrow-state)"/>
+            
+            <!-- From RobotState to State -->
+            <path class="state-flow" d="M 1460,140 Q 1460,300 1000,480" marker-end="url(#arrow-state)"/>
+            
+            <!-- From State to Generate -->
+            <path class="state-flow" d="M 600,450 Q 400,350 140,280" marker-end="url(#arrow-state)"/>
+            
+            <!-- From State to ExecutePolicy -->
+            <path class="state-flow" d="M 600,480 Q 450,380 300,280" marker-end="url(#arrow-state)"/>
+            
+            <!-- From State to DoRobotAction -->
+            <path class="control-flow" d="M 650,600 Q 400,650 140,700" marker-end="url(#arrow-control)"/>
+            
+            <!-- From Alarm to State (safety override) -->
+            <path class="safety-flow" d="M 640,700 Q 640,650 700,600" marker-end="url(#arrow-safety)"/>
+            
+            <!-- From DoRobotAction to ABB -->
+            <path class="control-flow" d="M 140,780 L 140,840" marker-end="url(#arrow-control)"/>
+            
+            <!-- From User Input to State -->
+            <path class="state-flow" d="M 1270,840 Q 1100,700 900,600" marker-end="url(#arrow-state)"/>
+            
+            <!-- From State to Audio Output -->
+            <path class="state-flow" d="M 900,600 Q 1100,700 1430,840" marker-end="url(#arrow-state)"/>
+        </svg>
+    </div>
+    
+    <div class="legend">
+        <div class="legend-title">Communication Patterns</div>
+        <div class="legend-item">
+            <div class="legend-line" style="background: #0096ff; border-top: 2px dashed #0096ff; background: none;"></div>
+            <span>State Read/Write</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-line" style="background: #00ff88;"></div>
+            <span>Control Commands</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-line" style="background: #f44336;"></div>
+            <span>Safety Override</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-line" style="background: rgba(255, 255, 255, 0.2);"></div>
+            <span>Shared Resources</span>
+        </div>
+    </div>
+</body>
+</html>

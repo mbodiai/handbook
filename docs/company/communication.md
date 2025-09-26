@@ -4,28 +4,38 @@ Effective communication is essential for our distributed, research-driven team. 
 
 ## Communication Principles
 
+### Linear-First Documentation
+- Every stack trace error must be documented in Linear with full context
+- All new research results and findings require Linear issues with visualizations
+- Update Linear immediately when encountering bugs, errors, or unexpected behavior
+- Include detailed descriptions and reproduction steps in Linear issues
+- Attach screenshots, logs, and data visualizations to Linear issues
+
 ### Transparency by Default
 - Share information openly unless there's a specific reason not to
 - Make decisions and reasoning visible to the entire team
-- Document important discussions and outcomes
-- Provide context for decisions and changes
+- Document important discussions and outcomes in Linear
+- Provide context for decisions and changes with proper issue tracking
 
-### Written First
+### Written First with Linear Integration
 - Document important information in writing for future reference
+- Create Linear issues for all actionable items and findings
 - Use asynchronous communication to respect different time zones and work styles
-- Create searchable records of decisions and discussions
+- Create searchable records of decisions and discussions through Linear and PRs
 
-### Purpose-Driven
+### Purpose-Driven with Tracking
 - Be clear about the purpose and expected outcomes of communications
+- Create Linear issues to track follow-up actions and commitments
 - Choose the right medium for the message and audience
 - Respect people's time and attention
-- Follow up on action items and commitments
+- Every communication should result in trackable Linear updates when actionable
 
 ### Inclusive & Respectful
 - Ensure all team members can participate regardless of location or schedule
 - Use clear, jargon-free language when possible
 - Provide multiple ways for people to contribute and ask questions
 - Foster psychological safety for open dialogue
+- Document accessibility considerations in Linear issues
 
 ## Communication Channels
 
@@ -80,6 +90,52 @@ Effective communication is essential for our distributed, research-driven team. 
 **Before the Meeting**: Create agenda in Handbook with Linear issue links
 **During the Meeting**: Follow the agenda, take notes in Handbook, create Linear issues for action items
 **After the Meeting**: Update Handbook with meeting notes within 24 hours
+
+## What to Document Where
+
+### Update Linear For:
+**Errors and Issues:**
+- Stack traces with full error context and environment details
+- Bug reports with reproduction steps and expected vs actual behavior
+- Performance issues with metrics and profiling data
+- Integration failures with API responses and configuration details
+
+**Research Results:**
+- Experimental findings with data visualizations and statistical analysis
+- Model performance metrics with charts and comparison tables
+- Literature review summaries with key insights and citations
+- Prototype results with screenshots, videos, and performance data
+
+**Work Progress:**
+- Daily progress updates with specific accomplishments
+- Blockers encountered with detailed descriptions and potential solutions
+- Time estimates and actual time spent on tasks
+- Dependencies identified and their impact on timeline
+
+**DO NOT Update Linear For:**
+- General process documentation
+- Company policies and procedures
+- Long-form technical guides
+- Historical context and background information
+
+### Update Handbook For:
+**Process Documentation:**
+- Step-by-step procedures and workflows
+- Best practices and coding standards
+- Onboarding guides and training materials
+- Tool setup and configuration instructions
+
+**Knowledge Base:**
+- Research methodologies and frameworks
+- Technical architecture and system design
+- Company policies and guidelines
+- Reference materials and resources
+
+**DO NOT Update Handbook For:**
+- Specific bug reports or error instances
+- Individual task progress or status updates
+- Time-sensitive information that changes frequently
+- Personal work logs or daily updates
 
 ## Documentation Standards
 

@@ -16,16 +16,19 @@ Advance the scientific foundations of embodied AI through rigorous research and 
 ## Research Areas
 
 ### Embodied Intelligence
+
 - Physical reasoning and spatial understanding
 - Sensorimotor learning and control
 - Multi-modal perception and action
 
 ### AI Systems
+
 - Neural architectures for embodied AI
 - Learning algorithms and optimization
 - System integration and deployment
 
 ### Applications
+
 - Robotics and autonomous systems
 - Human-AI interaction
 - Real-world problem solving
@@ -42,16 +45,22 @@ Our research work is tracked under the Research (RES) team. This includes:
 ## Getting Involved
 
 ### For Researchers
+
 - Join research planning meetings
 - Contribute to ongoing research projects
 - Participate in paper reviews and discussions
 - Collaborate on publications and presentations
 
 ### For Other Teams
+
 - Request research consultation on technical challenges
 - Propose research directions based on product needs
 - Participate in research reviews and feedback sessions
 - Access research findings and publications
+
+## Research Documentation
+
+- [Dominant Approaches in Embodied AI](dominant-approaches-embodied-ai.md) - Overview of major approaches in the field
 
 ## Resources
 

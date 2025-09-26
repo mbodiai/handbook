@@ -17,24 +17,28 @@ Provide financial management, planning, and business operations support to enabl
 ## Key Functions
 
 ### Financial Management
+
 - Monthly and quarterly financial reporting
 - Cash flow management and forecasting
 - Budget planning and variance analysis
 - Financial metrics and KPI tracking
 
 ### Business Operations
+
 - Accounts payable and receivable management
 - Payroll processing and benefits administration
 - Vendor management and procurement
 - Insurance and risk management
 
 ### Strategic Finance
+
 - Fundraising strategy and execution
 - Financial modeling for business planning
 - Investment analysis and decision support
 - M&A evaluation and due diligence
 
 ### Legal & Compliance
+
 - Contract review and management
 - Regulatory compliance monitoring
 - Intellectual property management
@@ -53,18 +57,21 @@ Our finance activities are tracked under the Finance (FIN) team:
 ## Financial Processes
 
 ### Budget Management
+
 - Annual budget planning process
 - Quarterly budget reviews and updates
 - Department budget allocation and tracking
 - Capital expenditure approval process
 
 ### Reporting & Analysis
+
 - Monthly financial statements and analysis
 - Quarterly board reporting packages
 - Annual audit coordination and compliance
 - Key performance indicator tracking and reporting
 
 ### Fundraising & Investor Relations
+
 - Investor presentation development and updates
 - Due diligence process management
 - Investor communication and reporting
@@ -73,12 +80,14 @@ Our finance activities are tracked under the Finance (FIN) team:
 ## Cross-Team Support
 
 ### With All Teams
+
 - Budget allocation and expense tracking
 - Financial guidance on project planning
 - Contract review and approval
 - Compliance training and support
 
 ### With Leadership
+
 - Strategic financial planning and analysis
 - Board presentation development
 - Investor relations support
