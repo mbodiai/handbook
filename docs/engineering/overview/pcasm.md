@@ -4,13 +4,13 @@ PCASM—Partition, Compare, Attend, Summarize, Map—is a control layer that run
 
 ## The world state you actually have
 
-At time \( t \), the robot’s belief is a triple \( X_t = (G_t, B_t, H_{0:t}) \), where:
+At time t, the robot’s belief is a triple X_t = (G_t, B_t, H_{0:t}), where:
 
 - G_t is a typed scene graph: objects, their attributes and 6D poses, and relations like on_top_of, in, near, supports.
 - B_t holds uncertainties and confidences from detectors, trackers, and pose estimators.
 - H_{0:t} is history: tracks, successes and failures, operator corrections, and short logs that matter for scheduling and risk.
 
-A natural‑language instruction \( L \) compiles into a goal specification \( \Phi \): predicates and constraints the world must satisfy, plus a small rule table that expresses affordances and preferences (for example, cylinders should be lifted with top suction; packets should be pinched at the side seam). We will return to how language becomes such rules.
+A natural‑language instruction L compiles into a goal specification Φ: predicates and constraints the world must satisfy, plus a small rule table that expresses affordances and preferences (for example, cylinders should be lifted with top suction; packets should be pinched at the side seam). We will return to how language becomes such rules.
 
 ## What the five functionals do (and don’t do)
 
@@ -18,9 +18,9 @@ PCASM separates five responsibilities cleanly:
 
 - Partition proposes candidates from the current node and context. In practice, candidates are objects, affordance sites, or subgoals extracted from G_t. Partition does not score or select; it only exposes options.
 - Summarize computes the sufficient statistics you need to decide. Use both item‑level summaries (class posteriors, 6D pose, geometry, reachability, semantic matches to the instruction) and set‑level summaries (how crowded the work area is, redundancy among options, risk indicators, partial coverage of the goal). Set‑level summaries are crucial for real‑time behavior because they let you gate redundant computations.
-- Compare assigns scores or energies to candidates given the goal and uncertainty. A typical shape is \( s = \text{relevance} - \text{risk} + \text{progress} \), with an exploration bonus when uncertainty is high. This is where you encode distance to goal predicates, grasp success priors by object shape, and penalties for occlusions or collisions.
+- Compare assigns scores or energies to candidates given the goal and uncertainty. A typical shape is s = relevance − risk + progress, with an exploration bonus when uncertainty is high. This is where you encode distance to goal predicates, grasp success priors by object shape, and penalties for occlusions or collisions.
 - Attend turns scores into a schedule under budgets. This is the real‑time gate: select the top few ROIs to refine with open‑vocabulary detectors, choose which grasps to attempt now, and decide whether to halt for this tick. Hard and soft policies live here: top‑k, thresholds, softmax weights, or stochastic selection when you want exploration.
-- Map is the only place where state is written. It emits outputs (perception calls, motor commands, logs) and produces the next contexts for each selected child. Map also fuses new evidence, updates \( G_t \) and \( B_t \), records policy outcomes in \( H_{0:t} \), and advances the residual goal \( \Delta\Phi \). A clean mental rule: everything reads the context; only Map writes it.
+- Map is the only place where state is written. It emits outputs (perception calls, motor commands, logs) and produces the next contexts for each selected child. Map also fuses new evidence, updates G_t and B_t, records policy outcomes in H_{0:t}, and advances the residual goal ΔΦ. A clean mental rule: everything reads the context; only Map writes it.
 
 ## A minimal end‑to‑end pass in words
 
@@ -43,26 +43,24 @@ Once you enforce these rules, the Required vs Optional discussion becomes crisp:
 
 ## Set‑theoretic PCASM (the algebra that makes it composable)
 
-Let \( N \) be nodes, \( C \) contexts, \( F \) features, \( K \) scores, \( W \) schedules, \( O \) outputs. The five maps are:
+Let N be nodes, C contexts, F features, K scores, W schedules, O outputs. The five maps are:
 
-\[
-\begin{aligned}
-P &:\; N \times C \to \mathcal{P}(N) \\
-U_{\text{item}} &:\; N \times C \to F \\
-U_{\text{set}} &:\; \mathcal{P}(N) \times C \to F_{\text{set}} \\
-R &:\; (F \times F_{\text{set}} \times C) \to K \\
-A &:\; K \times C \to W \\
-M &:\; (N, C, S \subseteq N, F, F_{\text{set}}, K, W) \to (O, \\varphi)
-\end{aligned}
-\]
+```
+P: N × C → P(N)
+U_item: N × C → F
+U_set: P(N) × C → F_set
+R: (F × F_set × C) → K
+A: K × C → W
+M: (N, C, S ⊆ N, F, F_set, K, W) → (O, φ)
+```
 
-Here \( S \) is the subset produced by Attend. The function \( \varphi: S \to C \) supplies a per‑child next context. The runtime graph has vertices \( (n, c) \) and edges
+Here S is the subset produced by Attend. The function φ: S → C supplies a per‑child next context. The runtime graph has vertices (n, c) and edges
 
-\[
-(n, c) \to (n', \varphi(n')), \quad n' \in S.
-\]
+```
+(n, c) → (n′, φ(n′)),  n′ ∈ S.
+```
 
-If you key visited by a canonicalization of \( (n, c) \) (for example, a stable hash of object id plus coarse pose bin and policy mode), this graph is a DAG during one traversal.
+If you key visited by a canonicalization of (n, c) (for example, a stable hash of object id plus coarse pose bin and policy mode), this graph is a DAG during one traversal.
 
 Identity forms make optionality precise:
 
@@ -74,25 +72,25 @@ Identity forms make optionality precise:
 
 ### What is existing state, relevance, and history in this algebra?
 
-Existing state is \( X_t = (G_t, B_t, H_{0:t}) \). Context \( c \) is the slice of state the PCASM loop reads heavily each tick: budgets, planner flags, detector switches, seeds, and the current residual goal \( \Delta\Phi \). Relevance is a score inside Compare that ties the current goal to scene items:
+Existing state is X_t = (G_t, B_t, H_{0:t}). Context c is the slice of state the PCASM loop reads heavily each tick: budgets, planner flags, detector switches, seeds, and the current residual goal ΔΦ. Relevance is a score inside Compare that ties the current goal to scene items:
 
-\[
-\mathrm{rel}(o \mid \Phi) = \sum_k w_k \, \mathbf{1}[o \; \text{participates in} \; \phi_k] \cdot \mathrm{compat}_k(o) - \lambda\,\mathrm{uncert}(o).
-\]
+```
+rel(o ∣ Φ) = Σ_k w_k · 1[o participates in φ_k] · compat_k(o) − λ · uncert(o)
+```
 
-Compatibility comes from language–vision grounding and uncertainty comes from \( B_t \). History enters as priors and dampers: Summarize can include empirical grasp success per shape; Compare can penalize affordances that recently failed; Attend can shrink budgets for detectors that underperform on this scene.
+Compatibility comes from language–vision grounding and uncertainty comes from B_t. History enters as priors and dampers: Summarize can include empirical grasp success per shape; Compare can penalize affordances that recently failed; Attend can shrink budgets for detectors that underperform on this scene.
 
 ## Comparing a scene graph to a desired one
 
-Language \( L \) produces a goal graph \( G^\star \) or a predicate set \( \Phi \). Progress requires aligning \( G_t \) to \( G^\star \) and measuring what is unsatisfied.
+Language L produces a goal graph G⋆ or a predicate set Φ. Progress requires aligning G_t to G⋆ and measuring what is unsatisfied.
 
 A simple scheme aligns nodes by cost
 
-\[
-c_{ij} = \lambda_c\,d_{\mathrm{class}} + \lambda_p\,d_{\mathrm{pose}} + \lambda_s\,d_{\mathrm{shape}} + \lambda_a\,d_{\mathrm{attr}},
-\]
+```
+c_ij = λ_c·d_class + λ_p·d_pose + λ_s·d_shape + λ_a·d_attr
+```
 
-solved by an assignment algorithm. When relations matter, a Gromov–Wasserstein‑style alignment compares relational structures as well. The unmet predicates form \( \Delta\Phi \); Compare rewards actions that reduce \( \Delta\Phi \), and Map marks a predicate satisfied when an action completes.
+solved by an assignment algorithm. When relations matter, a Gromov–Wasserstein‑style alignment compares relational structures as well. The unmet predicates form ΔΦ; Compare rewards actions that reduce ΔΦ, and Map marks a predicate satisfied when an action completes.
 
 ## Language as policy: affordance routing from words
 
@@ -105,7 +103,7 @@ rule grasp:
   default action=parallel_jaw_center
 ```
 
-At runtime, language produces \( \Phi \) and this rule table. Attend applies the router under budget; Map executes the chosen action and records its outcome.
+At runtime, language produces Φ and this rule table. Attend applies the router under budget; Map executes the chosen action and records its outcome.
 
 ## Worked examples
 
