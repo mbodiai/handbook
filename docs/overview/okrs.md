@@ -68,6 +68,7 @@ We aim for an average score of 0.6-0.7. If we're consistently scoring 1.0, our g
 **Objective:** Advance the state of embodied AI research
 
 **Key Results:**
+
 - Publish 2 peer-reviewed papers in top-tier AI conferences
 - Achieve 15% improvement in benchmark performance on embodied reasoning tasks
 - Open-source 1 significant research contribution with >100 GitHub stars

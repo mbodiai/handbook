@@ -33,34 +33,10 @@ Advance the scientific foundations of embodied AI through rigorous research and 
 - Human-AI interaction
 - Real-world problem solving
 
-## Team: RES
-
-Our research work is tracked under the Research (RES) team. This includes:
-
-- Research project planning and milestones
-- Publication tracking and deadlines
-- Collaboration coordination
-- Resource allocation and budget tracking
-
-## Getting Involved
-
-### For Researchers
-
-- Join research planning meetings
-- Contribute to ongoing research projects
-- Participate in paper reviews and discussions
-- Collaborate on publications and presentations
-
-### For Other Teams
-
-- Request research consultation on technical challenges
-- Propose research directions based on product needs
-- Participate in research reviews and feedback sessions
-- Access research findings and publications
-
-## Research Documentation
+### Research Documentation
 
 - [Dominant Approaches in Embodied AI](dominant-approaches-embodied-ai.md) - Overview of major approaches in the field
+- [Planning Background](planning-background.md) - Background on planning in embodied AI
 
 ## Resources
 

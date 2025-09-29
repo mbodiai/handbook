@@ -1,24 +1,29 @@
 # Overview: VisionSynapse publishes a single `SensorFrame` to state
 
 ## Goal
+
 Publish **one atomic object** (`SensorFrame`) that already contains the image+depth pairs for **all cameras**, and write it to the Zenoh-backed state under a **single key**. Consumers read that one key and deserialize back to `SensorFrame`.
 
 ## Components
+
 - **VisionSynapse** (producer): owns the loop and writes to state.
 - **Sensor backend** : provides a **merged** multi-camera frame.
 - **State** (Zenoh-backed): simple key/value store.
 - **SensorFrame**: data model that holds all per-camera payloads in one object.
 
 ## Data Model
+
 - `SensorFrame` already aggregates per-camera data:  
   `data = { "cam0": {...}, "cam1": {...}, "cam2": {...} }`,  
   where each entry carries **both** image and depth (plus intrinsics/metadata).
 
 ## Single State Key
+
 - **Key:** `sensor_frame`  
 - **Value:** `bytes` (serialized `SensorFrame`)
 
 ## Serialization
+
 - **Producer:**  
   `raw_bytes = SensorFrame.model_dump()` → `zbytes = z_serialize(raw_bytes)`
 - **Consumer:**  
@@ -49,6 +54,7 @@ Publish **one atomic object** (`SensorFrame`) that already contains the image+de
    - `frame = SensorFrame.model_load(raw)`
 
 ## Minimal Producer Pseudocode
+
 ```python
 def process(self):
     # 1) capture a single, merged multi-cam SensorFrame

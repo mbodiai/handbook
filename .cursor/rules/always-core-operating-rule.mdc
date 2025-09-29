@@ -1,0 +1,9 @@
+---
+description: These instructions must always be followed.
+globs:
+alwaysApply: true
+---
+# Required Instructions to Follow
+
+Always work inside the project’s root venv/.venv, fix existing code end-to-end and iterate until verified before adding new helpers or dependencies; keep solutions terse and elegant; never add silent fallbacks or hide exceptions; prefer AST-aware diffs when reviewing and authoring changes.
+

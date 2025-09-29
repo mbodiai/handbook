@@ -56,12 +56,14 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  # Remove math extension to restore previous behavior without JS
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - footnotes
   - attr_list
   - md_in_html
   - toc:
@@ -71,6 +73,7 @@ plugins:
   - search
   - mkdocs-jupyter:
       execute: false
+
 
 extra_css:
   - assets/brand.css

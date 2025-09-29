@@ -1,8 +1,6 @@
 # Mbodi Handbook
 
-Welcome to the Mbodi Company Handbook! This is our central repository for company information, processes, and guidelines.
-
-The name *mbodi* is derived from *embody*, reflecting our vision to give form to abstract AI capabilities, and the *n-body* problem in physics—representing our first principles approach to achieving embodied general intelligence.
+We are here to make robots learn like humans do by increasing the amount, quality, and availability of robotics data while drastically reducing the need for human supervision.
 
 ## Quick Links
 
@@ -24,10 +22,12 @@ This handbook is designed to be:
 
 This handbook is maintained collaboratively. If you find information that's out of date or missing, please:
 
-1. Create an issue in the [handbook repository](https://github.com/mbodi/handbook)
+1. Create an issue in the handbook repository[^handbook-gh]
 2. Submit a pull request with your proposed changes
 3. Reach out to the team for clarification
 
 ---
 
-Last updated: {date}
+Last updated: 2025-09-29
+
+[^handbook-gh]: See the [mbodi/handbook](https://github.com/mbodi/handbook) repository.

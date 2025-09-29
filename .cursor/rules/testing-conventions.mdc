@@ -1,0 +1,237 @@
+---
+description: Follow google testing best practices
+globs: **/*tests/**/*
+alwaysApply: false
+---
+
+# Testing Requirements
+
+1. Mirror `src/` in `tests/`; one file per class or large function; naming: files `test_<feature>.py`, functions `test_<behavior>()`, classes `Test<ClassName>`.
+2. Use the 4-step pattern: SETUP → EXPECTED (literal values) → ACT → ASSERT; write behavior-focused tests with clear given/when/then; do not put logic in tests.
+3. Keep tests fast (<100ms), independent, and isolated; mock heavy I/O and externals; run in parallel; use pytest parametrization and fixtures.
+4. Avoid anti-patterns: test-and-fix, giant setup, mystery guests, shared mutable state, sleeps, conditionals, and interdependent tests.
+5. Practicals: mirror example tree; test public APIs only; make files runnable with `if __name__ == "__main__": pytest.main([__file__, "-vv"])`; mock external calls (e.g., timeouts).
+
+## Test File Organization
+
+Every module in `src/` should have a corresponding folder in `tests/` that mirrors the module structure:
+
+- `src/<package>/<module>.py` → `tests/<package>/<module>`
+- `src/mbcore/log.py` → `tests/mbcore/log/`
+
+
+Each class, method, or large function should have its own test file:
+
+- Class: `tests/mbcore/ctx/test_suppress.py` for the `suppress` class
+- Large function: `tests/mbcore/ctx/test_chdir.py` for the `chdir` context manager
+- Small related functions can be grouped: `tests/mbcore/ctx/test_utils.py` for utility functions
+
+### Test Pattern
+
+All tests MUST follow this explicit pattern:
+
+```python
+def test_feature_name():
+    # 1. SETUP - Prepare test environment
+    input_data = "raw input"
+    test_object = ClassUnderTest()
+
+    # 2. EXPECTED - Define expected result explicitly
+    # Use literal values, not function calls or computations
+    expected_result = "exact expected output"
+    expected_state = {"key": "value", "count": 42}
+
+    # 3. ACT - Execute the code under test
+    actual_result = test_object.method(input_data)
+
+    # 4. ASSERT - Compare actual vs expected
+    assert actual_result == expected_result
+    assert test_object.state == expected_state
+```
+
+### Performance Considerations
+
+- Keep unit tests under 100ms each
+- Mock heavy operations (database, network, file I/O)
+- Use test databases/fixtures for integration tests
+- Run tests in parallel when possible
+
+## Anti-Patterns to Avoid
+
+1. **Test and Fix** - Don't write tests that mirror bugs in the code
+2. **Giant Setup** - If setup is complex, the code design may need refactoring  
+3. **Mystery Guest** - Don't rely on external files or hidden dependencies
+4. **Shared Mutable State** - Each test should be independent
+5. **Sleep in Tests** - Use deterministic waits or mocks instead
+6. **Conditional Test Logic** - No if/else in tests
+7. **Test Interdependencies** - Tests must run in any order
+
+## File Naming Convention
+
+- Test files: `test_<feature>.py`
+- Test functions: `test_<specific_behavior>()`
+- Test classes: `Test<ClassName>`
+
+### Make the file runnable with the following at the bottom
+
+```
+if __name__ == "__main__":
+    pytest.main([__file__, "-vv"])
+```
+
+## Example Structure
+
+```
+tests/
+├── mbcore/
+│   ├── ctx/
+│   │   ├── test_suppress.py
+│   │   ├── test_chdir.py
+│   │   ├── test_tempdir.py
+│   │   ├── test_tempenv.py
+│   │   └── test_result_exception_holder.py
+│   └── log/
+│       ├── test_logger.py
+│       └── test_formatters.py
+```
+
+```python
+# ❌ BAD - Testing private implementation
+def test_transaction_validator():
+    processor = TransactionProcessor()
+    assert processor._is_valid(transaction) == True  # Don't test private methods!
+    assert processor is not None # NOT full equality.
+
+# ✅ GOOD - Testing public API
+def test_transaction_processing():
+    processor = TransactionProcessor()
+    processor.set_balance("account1", 100)
+    processor.process_transaction(Transaction("account1", "account2", 50))
+    
+    expected_balance = 50
+    assert processor.get_balance("account1") == expected_balance
+```
+
+### Test Behaviors, Not Methods
+
+Write a test for each behavior rather than each method. A behavior is any guarantee that a system makes about how it will respond to inputs while in a particular state:
+
+```python
+# ❌ BAD - Method-oriented test
+def test_display_transaction_results():
+    # Tests multiple behaviors in one test
+    processor.display_transaction_results(user, transaction)
+    assert "You bought" in ui.text
+    assert "balance is low" in ui.text
+
+# ✅ GOOD - Behavior-driven tests
+def test_display_transaction_shows_item_name():
+    processor.display_transaction_results(User(), Transaction("Coffee"))
+    expected_message = "You bought a Coffee"
+    assert ui.text == expected_message
+
+def test_display_transaction_shows_low_balance_warning():
+    user = User(balance=5)
+    processor.display_transaction_results(user, Transaction("Coffee", price=3))
+    expected_warning = "Warning: your balance is low!"
+    assert expected_warning in ui.text
+```
+
+### Structure Tests to Emphasize Behaviors
+
+Use clear given/when/then structure:
+
+```python
+def test_transfer_funds_moves_money_between_accounts():
+    # GIVEN - Two accounts with initial balances
+    sender = Account(balance=150)
+    receiver = Account(balance=20)
+    
+    # WHEN - Transferring money
+    bank.transfer_funds(sender, receiver, amount=100)
+    
+    # THEN - Balances reflect the transfer
+    expected_sender_balance = 50
+    expected_receiver_balance = 120
+    assert sender.balance == expected_sender_balance
+    assert receiver.balance == expected_receiver_balance
+```
+
+### Don't Put Logic in Tests
+
+Tests should be trivially correct upon inspection. Avoid:
+
+- Loops, conditionals, or operators in test code
+- Complex string concatenation
+- Any computation to determine expected values
+
+```python
+# ❌ BAD - Logic in test
+def test_url_construction():
+    base = "http://example.com"
+    path = "/api"
+    assert api.get_url() == base + path  # Logic hides bugs!
+
+# ✅ GOOD - No logic, explicit values
+def test_url_construction():
+    expected_url = "http://example.com/api"
+    assert api.get_url() == expected_url
+```
+
+### DAMP over DRY
+
+Tests should promote "Descriptive And Meaningful Phrases" (DAMP) rather than "Don't Repeat Yourself" (DRY). A little duplication is OK in tests if it makes them clearer:
+
+```python
+# ❌ BAD - Too DRY, unclear
+def test_user_permissions():
+    users = create_users(True, False)  # What do these booleans mean?
+    forum = setup_forum_with_users(users)
+    validate_permissions(forum, users)
+
+# ✅ GOOD - DAMP, clear and explicit
+def test_banned_users_cannot_post():
+    banned_user = User(state=UserState.BANNED)
+    normal_user = User(state=UserState.NORMAL)
+    
+    forum = Forum()
+    forum.register(normal_user)
+    
+    with pytest.raises(BannedUserException):
+        forum.register(banned_user)
+    
+    assert forum.has_user(normal_user) == True
+    assert forum.has_user(banned_user) == False
+```
+
+### Use pytest Features
+
+```python
+# Parametrized tests for multiple cases
+@pytest.mark.parametrize("input,expected", [
+    ("", True),
+    ("hello", False),
+    (None, True),
+])
+def test_is_empty(input, expected):
+    assert is_empty(input) == expected
+
+# Fixtures for common setup
+@pytest.fixture
+def database():
+    db = Database()
+    yield db
+    db.cleanup()
+```
+
+### Mock External Dependencies
+
+```python
+# Use pytest-mock or unittest.mock
+def test_api_call_handles_timeout(mocker):
+    mock_requests = mocker.patch('requests.get')
+    mock_requests.side_effect = Timeout()
+    
+    expected_result = None
+    assert fetch_data() == expected_result
+```
