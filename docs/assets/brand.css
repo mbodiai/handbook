@@ -1,0 +1,39 @@
+/* Mbodi Brand Colors (aligned with Gradio mbodi palette) */
+:root {
+  --mbodi-primary: #ed3d5d;           /* c500 */
+  --mbodi-primary-dark: #b93048;      /* c600 */
+  --mbodi-primary-light: #f15c5c;     /* c300 */
+  --mbodi-white: #ffffff;
+}
+
+/* Override Material theme with exact brand colors */
+[data-md-color-primary="pink"] {
+  --md-primary-fg-color: var(--mbodi-primary);
+  --md-primary-fg-color--light: var(--mbodi-primary);
+  --md-primary-fg-color--dark: var(--mbodi-primary-dark);
+}
+
+[data-md-color-accent="pink"] {
+  --md-accent-fg-color: var(--mbodi-primary);
+  --md-accent-fg-color--transparent: rgba(237, 61, 93, 0.1);
+}
+
+
+/* Dark mode overrides */
+[data-md-color-scheme="slate"][data-md-color-primary="pink"] {
+  --md-primary-fg-color: var(--mbodi-primary);
+  --md-primary-fg-color--light: var(--mbodi-primary);
+  --md-primary-fg-color--dark: var(--mbodi-primary-dark);
+}
+
+[data-md-color-scheme="slate"][data-md-color-accent="pink"] {
+  --md-accent-fg-color: var(--mbodi-primary);
+  --md-accent-fg-color--transparent: rgba(237, 61, 93, 0.1);
+}
+
+/* Footer fixes */
+.md-footer { background: transparent; box-shadow: none; }
+.md-footer-meta { display: none; }
+.md-footer-nav { border-top: 1px solid rgba(0, 0, 0, 0.06); }
+[data-md-color-scheme="slate"] .md-footer-nav { border-top-color: rgba(255, 255, 255, 0.08); }
+

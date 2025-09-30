@@ -1,0 +1,74 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+]
+build_backend = "setuptools.build_meta"
+
+[project]
+name = "handbook"
+version = "0.1.0"
+description = "A new workspace"
+license = "MIT"
+authors = [{name = "Sebastian"}]
+dependencies = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-jupyter",
+    "mkdocs-mermaid2-plugin",
+    "mkdocs-git-revision-date-plugin",
+    "mkdocs-git-revision-date-localized-plugin",
+]
+
+[tool.mb]
+base_url = "https://mbodi.com/v1"
+
+[tool.mb.api]
+openai_api_key = "sk-pr********************"
+anthropic_api_key = "sk-an********************"
+gemini_api_key = "AIzaS********************"
+deepseek_api_key = "sk-99********************"
+mbodi_api_key = "0c38c********************"
+
+[tool.mb.logs]
+level = "unset"
+path_dir = "/Users/sebastian/.mb/logs"
+show_locals = false
+show_stack = false
+include_modules = []
+exclude_modules = [
+    "markdown_it",
+]
+ignore_third_party = false
+full_trace = false
+disable = false
+
+[tool.mb.logs.handlers]
+default = [
+    "rich",
+]
+file = [
+    "file",
+]
+
+[tool.mb.cache]
+disable = false
+path_dir = "mb"
+ttl = 604800
+maxsize = 104857600
+context_policy = "ttl"
+persistent = false
+wire_format = "json-bytes"
+
+[tool.setuptools.packages.find]
+include = [
+    "handbook*",
+]
+exclude = [
+    "site*",
+    "docs*",
+    "build*",
+    "dist*",
+]
+
+

@@ -1,0 +1,88 @@
+site_name: Mbodi Handbook
+repo_url: https://github.com/mbodiai/handbook
+edit_uri: edit/main/docs/
+site_url: https://corp.mbodi.ai/handbook
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+    - content.action.view
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  logo: assets/logo_hd_nobg_white.png
+  favicon: assets/favicon.png
+
+nav:
+  - Home: index.md
+  - Company:
+      - Mission & Vision: overview/values.md
+      - Product Principles: overview/product-principles.md
+      - How We Hire: overview/how-we-hire.md
+      - OKRs: overview/okrs.md
+      - Organization: overview/organization.md
+      - Communication: overview/communication.md
+      - Tools We Use: overview/third-party-tools.md
+  - Research:
+      - Index: research/index.md
+  - Engineering:
+      - Architecture: eng/architecture.md
+      - ADRs: eng/adr/index.md
+      - RFCs: eng/rfcs/index.md
+      - PCASM: eng/overview/pcasm.md
+  - Operations: ops/index.md
+  - People: people/index.md
+  - Finance: ops/finance/index.md
+  - Security: security/index.md
+  - Legal: ops/legal/index.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # Enable math rendering via MathJax
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - footnotes
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mermaid2
+  - glightbox
+
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra_css:
+  - assets/brand.css

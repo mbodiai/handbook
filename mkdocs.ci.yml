@@ -1,0 +1,10 @@
+INHERIT: mkdocs.yml
+
+plugins:
+  - search
+  - glightbox
+  - htmlproofer:
+      check_external: true
+      raise_error: true
+
+strict: true

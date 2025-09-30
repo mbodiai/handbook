@@ -1,0 +1,52 @@
+---
+description: Style guide for concise, efficient code
+globs: **/*.py
+alwaysApply: true
+---
+
+# Python Style Guide
+
+## Core Principles
+
+- **Conciseness**: Minimize line count without sacrificing readability
+- **Full line usage**: Use up to 160 characters per line
+- **No unnecessary comments**: Code should be self-documenting
+- **Prefer comprehensions**: Use list/dict/set comprehensions over explicit loops when appropriate
+- **Always Use Full English variable namess**: Unless dead obvious and univerally unambiguous always use full variable names
+- **Never add Silent Exception Handling**: Always create full, working code free of silent exception handling or inappropriate fallbacks.
+- **Prefer not to use leading underscores**: Only use these when absolutely necessary to keep code legible.
+- **Use the full line-length available**: Break lines only when necessary for readability
+
+
+## Line Length
+
+- Maximum line length: 160 characters
+- Utilize the full width for better information density
+- Break lines only when necessary for readability
+
+## Comments
+
+- **NO comments** unless absolutely critical for understanding complex algorithms
+- Code should be self-explanatory through clear variable and function names
+- Remove TODO, FIXME, and other comment noise
+- No docstring comments for obvious functionality
+
+## Imports
+
+- Group imports: standard library, third-party, local imports
+- Use absolute imports when possible
+- Combine imports on single lines when under 160 characters: `from typing import Any, List, Dict, Optional`
+
+## Variable Naming
+
+- Use descriptive names that eliminate need for comments
+- Prefer `items` over `item_list`, `data` over `input_data`
+- Single letter variables only for short loops: `for i, item in enumerate(items)`
+
+## Function Definitions
+
+- Combine parameters on single line when under 160 characters
+- Use type hints without spaces around `=` for defaults: `def func(param: str = "default", count: int = 0) -> bool:`
+- Return early to reduce nesting
+
+## Comprehensions Over Loops
